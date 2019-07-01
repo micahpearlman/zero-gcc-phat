@@ -6,9 +6,9 @@ find_package(PkgConfig) # support for Makefile style pkg-config
 message("-- system arch:  ${CMAKE_SYSTEM_PROCESSOR}")
 
 ### Get the required packages
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # FFTW
-include(cmake/findFFTW.cmake)
 find_package(FFTW REQUIRED)
 message(STATUS "Found FFTW ${FFTW_FOUND}")
 message(STATUS "    libraries: ${FFTW_LIBRARIES}")
@@ -18,7 +18,7 @@ message(STATUS "    libraries: ${FFTW_LIBRARIES}")
 set(CMAKE_CXX_STANDARD 11)
 
 ### Create Zero GCC-PHAT library
-add_library(zo-gcc-phat src/zo-gcc-phat.cpp)
+add_library(zo-gcc-phat src/zo-gcc-phat-fftw.cpp)
 target_include_directories(zo-gcc-phat PRIVATE ${FFTW_INCLUDES})
 target_link_libraries(zo-gcc-phat ${FFTW_LIBRARIES})
 

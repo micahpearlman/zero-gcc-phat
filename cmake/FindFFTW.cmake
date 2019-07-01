@@ -2,7 +2,7 @@
 #
 # Usage:
 #   find_package(FFTW [REQUIRED] [QUIET] )
-#     
+#
 # It sets the following variables:
 #   FFTW_FOUND               ... true if fftw is found on the system
 #   FFTW_LIBRARIES           ... full path to fftw library
@@ -50,6 +50,14 @@ if( FFTW_ROOT )
   )
 
   find_library(
+    FFTW_THREADS_LIB
+    NAMES "fftw3_threads"
+    PATHS ${FFTW_ROOT}
+    PATH_SUFFIXES "lib" "lib64"
+    NO_DEFAULT_PATH
+  )
+
+  find_library(
     FFTWF_LIB
     NAMES "fftw3f"
     PATHS ${FFTW_ROOT}
@@ -58,8 +66,24 @@ if( FFTW_ROOT )
   )
 
   find_library(
+    FFTWF_THREADS_LIB
+    NAMES "fftw3f_threads"
+    PATHS ${FFTW_ROOT}
+    PATH_SUFFIXES "lib" "lib64"
+    NO_DEFAULT_PATH
+  )
+
+  find_library(
     FFTWL_LIB
     NAMES "fftw3l"
+    PATHS ${FFTW_ROOT}
+    PATH_SUFFIXES "lib" "lib64"
+    NO_DEFAULT_PATH
+  )
+
+  find_library(
+    FFTWL_THREADS_LIB
+    NAMES "fftw3l_threads"
     PATHS ${FFTW_ROOT}
     PATH_SUFFIXES "lib" "lib64"
     NO_DEFAULT_PATH
@@ -83,15 +107,32 @@ else()
   )
 
   find_library(
+    FFTW_THREADS_LIB
+    NAMES "fftw3_threads"
+    PATHS ${PKG_FFTW_LIBRARY_DIRS} ${LIB_INSTALL_DIR}
+  )
+
+  find_library(
     FFTWF_LIB
     NAMES "fftw3f"
     PATHS ${PKG_FFTW_LIBRARY_DIRS} ${LIB_INSTALL_DIR}
   )
 
+  find_library(
+    FFTWF_THREADS_LIB
+    NAMES "fftw3f_threads"
+    PATHS ${PKG_FFTW_LIBRARY_DIRS} ${LIB_INSTALL_DIR}
+  )
 
   find_library(
     FFTWL_LIB
     NAMES "fftw3l"
+    PATHS ${PKG_FFTW_LIBRARY_DIRS} ${LIB_INSTALL_DIR}
+  )
+
+  find_library(
+    FFTWL_THREADS_LIB
+    NAMES "fftw3l_threads"
     PATHS ${PKG_FFTW_LIBRARY_DIRS} ${LIB_INSTALL_DIR}
   )
 
@@ -115,4 +156,4 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(FFTW DEFAULT_MSG
                                   FFTW_INCLUDES FFTW_LIBRARIES)
 
-mark_as_advanced(FFTW_INCLUDES FFTW_LIBRARIES FFTW_LIB FFTWF_LIB FFTWL_LIB)
+mark_as_advanced(FFTW_INCLUDES FFTW_LIBRARIES FFTW_LIB FFTWF_LIB FFTWL_LIB FFTW_THREADS_LIB FFTWF_THREADS_LIB FFTWL_THREADS_LIB)
