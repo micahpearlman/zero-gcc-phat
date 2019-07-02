@@ -34,9 +34,9 @@ namespace zo {
          * 
          * @param signal First signal, say from microphone 1
          * @param refsignal Second signal, say from microphone 2
-         * @return float "Tau" or distance signal is from refsignal
+         * @return int "Tau" or distance signal is from refsignal
          */
-        virtual float execute(const std::vector<int16_t>& signal, const std::vector<int16_t>& refsignal) = 0;
+        virtual int execute(const std::vector<int16_t>& signal, const std::vector<int16_t>& refsignal, int margin) = 0;
     };
 } // namespace zo
 
