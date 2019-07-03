@@ -15,7 +15,7 @@ void rotate(std::vector<int16_t>& out, const std::vector<int16_t>& in, int rot) 
 int main(int argc, char* argv[]) {
     zo::GccPhat* gcc_phat = zo::GccPhat::create();
 
-    int    true_delay = -23;  /* The "true" delay value. This is the answer we are looking for. */
+    int    true_delay = 43;  /* The "true" delay value. This is the answer we are looking for. */
     double amp = 1.0;       /* amplitude of the sine wave - arbitrary */
     int    samp_freq = 512;   /* frequency of the sine wave - arbitrary */
 
@@ -39,6 +39,7 @@ int main(int argc, char* argv[]) {
     rotate(sigb, siga, true_delay);
 
     int margin = 50;
+    gcc_phat->init(nsamps);
     int distance = gcc_phat->execute(siga, sigb, 50);
 
     std::cout << "Delay: " << true_delay << "\n"

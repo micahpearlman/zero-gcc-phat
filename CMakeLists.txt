@@ -18,7 +18,8 @@ message(STATUS "    libraries: ${FFTW_LIBRARIES}")
 set(CMAKE_CXX_STANDARD 11)
 
 ### Create Zero GCC-PHAT library
-add_library(zo-gcc-phat src/zo-gcc-phat-fftw.cpp)
+add_library(zo-gcc-phat src/zo-gcc-phat.cpp
+                        src/zo-fft-fftw.cpp)
 target_include_directories(zo-gcc-phat PRIVATE ${FFTW_INCLUDES})
 target_link_libraries(zo-gcc-phat ${FFTW_LIBRARIES})
 
