@@ -1,6 +1,8 @@
 ### Python
 *.pyc
 
+### VS Code
+.vscode/
 
 ### CMake
 build/
